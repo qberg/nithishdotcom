@@ -113,7 +113,7 @@ export const workExperience: WorkExperience[] = [
     location: "Bangalore, India",
   },
   {
-    role: "Cosultant",
+    role: "Consultant",
     company: "Minsky Digital Solutions Pvt. Ltd.",
     companyWebsite: "https://www.minsky.in/",
     duration: "July 2023 - July 2024",
