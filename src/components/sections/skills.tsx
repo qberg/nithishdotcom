@@ -64,7 +64,13 @@ function SectionHeader({ title }: { title: string }) {
 }
 
 export default function Skills() {
-  // Container variants for staggered children animations
+  if (!skills || !tools) {
+    return (
+      <section className="mt-12">
+        <p>Skills information coming soon...</p>
+      </section>
+    );
+  }
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

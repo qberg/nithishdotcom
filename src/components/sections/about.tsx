@@ -1,5 +1,31 @@
+"use client";
+
 import { about, contacts } from "@/data/bioData";
 import { AnimatedLink } from "../ui/animated-link";
+import { motion } from "motion/react";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChidren: 0.1,
+    },
+  },
+};
+
+const paragraphVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1.0],
+    },
+  },
+};
 
 export default function About() {
   if (!about) {
@@ -10,14 +36,33 @@ export default function About() {
     );
   }
   return (
-    <section className="mt-6 text-lg" aria-label="About Me">
-      {about.introduction && <p className="mb-4">{about.introduction}</p>}
+    <motion.section
+      className="text-lg"
+      aria-label="About Me"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-50px" }}
+    >
+      {about.introduction && (
+        <motion.p className="mb-4" variants={paragraphVariants}>
+          {about.introduction}
+        </motion.p>
+      )}
 
-      {about.experience && <p className="mb-4">{about.experience}</p>}
+      {about.experience && (
+        <motion.p className="mb-4" variants={paragraphVariants}>
+          {about.experience}
+        </motion.p>
+      )}
 
-      {about.education && <p className="mb-4">{about.education}</p>}
+      {about.education && (
+        <motion.p className="mb-4" variants={paragraphVariants}>
+          {about.education}
+        </motion.p>
+      )}
 
-      <p className="sm:max-w-[60%]">
+      <motion.p className="sm:max-w-[60%]" variants={paragraphVariants}>
         Want to chat?{" "}
         <AnimatedLink
           href={contacts[0].href}
@@ -42,7 +87,7 @@ export default function About() {
         >
           {contacts[2].label}
         </AnimatedLink>
-      </p>
-    </section>
+      </motion.p>
+    </motion.section>
   );
 }

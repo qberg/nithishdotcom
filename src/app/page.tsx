@@ -1,12 +1,5 @@
-import { Main } from "@/components/layout";
-import Profile from "@/components/sections/profile";
-import TabContent from "@/components/sections/tab-content";
+import { redirect } from "next/navigation";
 
 export default function Home() {
-  return (
-    <Main>
-      <Profile />
-      <TabContent />
-    </Main>
-  );
+  redirect("/about");
 }

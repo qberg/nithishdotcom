@@ -7,7 +7,7 @@ interface PersonalInfo {
 
 interface TabItem {
   label: string;
-  value: string;
+  href: string;
 }
 
 interface About {
@@ -54,7 +54,7 @@ interface Sell {
 export const personalInfo: PersonalInfo = {
   name: "Nithish Sampath",
   description:
-    " Product Manager. Fintech & SaaS. Passionate about building Scalable Digital Experiences",
+    " Product Manager. Fintech & SaaS. Building Scalable Digital Experiences.",
   profileImage: "/profile.jpeg",
   profileImageAlt: "Nithish doing nithish things",
 };
@@ -62,19 +62,19 @@ export const personalInfo: PersonalInfo = {
 export const tabItems: TabItem[] = [
   {
     label: "About",
-    value: "about",
+    href: "/about",
   },
   {
     label: "CV",
-    value: "cv",
+    href: "/cv",
   },
   {
     label: "Projects",
-    value: "projects",
+    href: "/projects",
   },
   {
     label: "Skills",
-    value: "skills",
+    href: "/skills",
   },
 ];
 
