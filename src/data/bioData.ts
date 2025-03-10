@@ -83,7 +83,7 @@ export const about: About = {
     "I'm Nithish, a product manager passionate about fintech, SaaS, and digital technologies. With a background in product development, market research, and data-driven decision-making, I thrive at the intersection of technology and business.",
 
   experience:
-    "Throughout my career, I've led cross-functional teams to deliver innovative solutions that drive business growth and enhance user experience. I specialize in product strategy, user flows, roadmapping, priortization, and translating complex market needs into elegant technical solutions.",
+    "Throughout my career, I've led cross-functional teams to deliver innovative solutions that drive business growth and enhance user experience. I specialize in product strategy, user journeys, roadmapping, prioritization, and translating complex market needs into elegant digital solutions.",
 
   education:
     "Currently, I'm pursuing my Master's in Technology Management at Gies College of Business, where I am expanding my expertise in product management, systems development, and managing innovations.",
@@ -95,8 +95,8 @@ export const contacts: Contact[] = [
     href: "mailto:nithish2@illinois.edu",
   },
   {
-    label: "GitHub",
-    href: "https://github.com/nithish1729",
+    label: "X",
+    href: "https://x.com/nithishxs29?s=21",
   },
   {
     label: "LinkedIn",
@@ -124,7 +124,7 @@ export const workExperience: WorkExperience[] = [
     company: "Futures First Pvt. Ltd.",
     companyWebsite: "https://futuresfirst.com/",
     duration: "May 2020 - July 2020",
-    location: "Chennai, India",
+    location: "Bangalore, India",
   },
 ];
 
