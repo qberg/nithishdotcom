@@ -54,7 +54,7 @@ interface Sell {
 export const personalInfo: PersonalInfo = {
   name: "Nithish Sampath",
   description:
-    " Product Manager. Fintech & SaaS. Building Scalable Digital Experiences.",
+    " Product Manager | Fintech & SaaS | Building Scalable Digital Experiences.",
   profileImage: "/profile.jpeg",
   profileImageAlt: "Nithish doing nithish things",
 };
