@@ -61,7 +61,7 @@ export const personalInfo: PersonalInfo = {
 
 export const tabItems: TabItem[] = [
   {
-    label: "About Me",
+    label: "Profile",
     href: "/about",
   },
   {
@@ -147,12 +147,12 @@ export const education: Education[] = [
 
 export const projects: Project[] = [
   {
-    title: "UPI Payments Revamp – iMobile Pay",
+    title: "Digital Payments Revamp – Mobile Application",
     description:
       "Redesigned the UPI payments experience on the iMobile Pay app by improving journeys, introducing backend validations, and streamlining payments flow. This led to a 15% increase in traffic and enhanced user retention.",
     duration: "2024",
     imageUrl: "/p1.png",
-    href: "/projects/Digital-payments-revamp",
+    href: "/projects/upi-payments-revamp",
     tags: ["design", "system", "product development", "Fintech"],
   },
   {
