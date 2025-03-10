@@ -61,11 +61,11 @@ export const personalInfo: PersonalInfo = {
 
 export const tabItems: TabItem[] = [
   {
-    label: "About",
+    label: "About Me",
     href: "/about",
   },
   {
-    label: "CV",
+    label: "Career",
     href: "/cv",
   },
   {
@@ -80,27 +80,27 @@ export const tabItems: TabItem[] = [
 
 export const about: About = {
   introduction:
-    "I'm Nithish, a product manager passionate about fintech, SaaS, and digital transformation. With a background in payments, market research, and data-driven decision-making, I thrive at the intersection of technology and business.",
+    "I'm Nithish, a product manager passionate about fintech, SaaS, and digital technologies. With a background in product development, market research, and data-driven decision-making, I thrive at the intersection of technology and business.",
 
   experience:
-    "Throughout my career, I've led cross-functional teams to deliver innovative solutions that drive business growth and enhance user experience. I specialize in product strategy, roadmap development, and translating complex market needs into elegant technical solutions.",
+    "Throughout my career, I've led cross-functional teams to deliver innovative solutions that drive business growth and enhance user experience. I specialize in product strategy, user flows, roadmapping, priortization, and translating complex market needs into elegant technical solutions.",
 
   education:
-    "Currently, I'm pursuing my Master's in Technology Management at Gies College of Business, where I am expanding my expertise in product management, strategic consulting, and emerging technologies.",
+    "Currently, I'm pursuing my Master's in Technology Management at Gies College of Business, where I am expanding my expertise in product management, systems development, and managing innovations.",
 };
 
 export const contacts: Contact[] = [
   {
     label: "Mail",
-    href: "mailto:ssniki2912@gmail.com",
+    href: "mailto:nithish2@illinois.edu",
   },
   {
     label: "GitHub",
-    href: "https://github.com/qberg",
+    href: "https://github.com/nithish1729",
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/nitishs",
+    href: "https://www.linkedin.com/in/nithish-s298/",
   },
 ];
 
@@ -120,7 +120,7 @@ export const workExperience: WorkExperience[] = [
     location: "Remote",
   },
   {
-    role: "Financial Analyste Intern",
+    role: "Financial Analyst Intern",
     company: "Futures First Pvt. Ltd.",
     companyWebsite: "https://futuresfirst.com/",
     duration: "May 2020 - July 2020",
@@ -132,14 +132,14 @@ export const education: Education[] = [
   {
     degree: "Masters in Technology Management",
     college: "Gies College of Business",
-    collegeWebsite: "https://iitmadras.com",
+    collegeWebsite: "https://giesbusiness.illinois.edu/",
     duration: "July 2024 - Present",
-    location: "Chicago, USA",
+    location: "Illinois, USA",
   },
   {
-    degree: "B.Tech in Naval Architecture",
+    degree: "B.Tech in Ocean Engineering",
     college: "IIT Madras",
-    collegeWebsite: "https://iitmadras.com",
+    collegeWebsite: "https://www.iitm.ac.in/",
     duration: "July 2017 - June 2021",
     location: "Chennai, India",
   },
@@ -149,39 +149,39 @@ export const projects: Project[] = [
   {
     title: "UPI Payments Revamp – iMobile Pay",
     description:
-      "Redesigned UX, added backend validation, and improved error handling, leading to an 18% traffic increase and better user retention.",
+      "Redesigned the UPI payments experience on the iMobile Pay app by improving journeys, introducing backend validations, and streamlining payments flow. This led to a 15% increase in traffic and enhanced user retention.",
     duration: "2024",
     imageUrl: "/p1.png",
-    href: "/projects/upi-payments-revamp",
-    tags: ["design", "system"],
+    href: "/projects/Digital-payments-revamp",
+    tags: ["design", "system", "product development", "Fintech"],
   },
   {
     title: "Digital Election Management System",
     description:
-      "Redesigned UX, added backend validation, and improved error handling, leading to an 18% traffic increase and better user retention.",
+      "Developed a data visualization dashboard for government representatives, enabling real-time insights into constituency data. This improved campaign efficiency and supported data-driven decision-making.",
     duration: "2023",
     imageUrl: "/p2.png",
     href: "/projects/upi-payments-revamp",
-    tags: ["design", "system"],
+    tags: ["User design", "Dashboard", "Data Visualization" ],
   },
 ];
 
 export const skills: Sell[] = [
   {
     title: "Product Management",
-    buzzWords: "Roadmap Planning, PRDs, Agile/Scrum, User Stories",
+    buzzWords: "Leadership, Empathy, Prioritization, Agile Methodologies",
   },
   {
     title: "Data and Analytics",
-    buzzWords: "SQL, Python (Matplotlib, NumPy), A/B Testing",
+    buzzWords: "Problem Solving, A/B Testing, Data Analysis",
   },
   {
     title: "UX and Design",
-    buzzWords: "Wireframing, Prototyping (Figma), User Research",
+    buzzWords: "Wireframing, Prototyping, User Research, Design Thinking",
   },
   {
     title: "Market Research",
-    buzzWords: "Competitive Analysis, GTM Strategy",
+    buzzWords: "Competitive Analysis, Communication, Product Development",
   },
 ];
 
