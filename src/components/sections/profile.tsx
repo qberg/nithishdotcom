@@ -24,12 +24,14 @@ export default function Profile() {
         </figure>
         <div className="flex items-center justify-between gap-4">
           <ModeToggle />
-          <Button
-            variant="default"
-            className="rounded-full  hover:bg-gray-800 text-lg"
-          >
-            Resume
-          </Button>
+          <a href="/resume.pdf" download>
+            <Button
+              variant="default"
+              className="rounded-full  hover:bg-gray-800 text-lg cursor-pointer"
+            >
+              Resume
+            </Button>
+          </a>
         </div>
       </header>
 
