@@ -131,14 +131,14 @@ export const workExperience: WorkExperience[] = [
 export const education: Education[] = [
   {
     degree: "Masters in Technology Management",
-    college: "Gies College of Business",
+    college: "University of Illinois Urbana-Champaign",
     collegeWebsite: "https://giesbusiness.illinois.edu/",
     duration: "July 2024 - Present",
     location: "Illinois, USA",
   },
   {
     degree: "B.Tech in Ocean Engineering",
-    college: "IIT Madras",
+    college: "Indian Institute of Technology Madras",
     collegeWebsite: "https://www.iitm.ac.in/",
     duration: "July 2017 - June 2021",
     location: "Chennai, India",
