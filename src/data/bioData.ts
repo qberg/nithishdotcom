@@ -113,14 +113,14 @@ export const workExperience: WorkExperience[] = [
     location: "Bangalore, India",
   },
   {
-    role: "Consultant",
+    role: "Product Consultant",
     company: "Minsky Digital Solutions Pvt. Ltd.",
     companyWebsite: "https://www.minsky.in/",
-    duration: "July 2023 - July 2024",
+    duration: "March 2023 - May 2024",
     location: "Remote",
   },
   {
-    role: "Financial Analyst Intern",
+    role: "Product Analyst Intern",
     company: "Futures First Pvt. Ltd.",
     companyWebsite: "https://futuresfirst.com/",
     duration: "May 2020 - July 2020",
