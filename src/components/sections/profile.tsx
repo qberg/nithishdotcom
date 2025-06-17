@@ -24,7 +24,7 @@ export default function Profile() {
         </figure>
         <div className="flex items-center justify-between gap-4">
           <ModeToggle />
-          <a href="/resume.pdf" download>
+          <a href="/Nithish Sampath Resume PM.pdf" download>
             <Button
               variant="default"
               className="rounded-full  hover:bg-gray-800 text-lg cursor-pointer"
