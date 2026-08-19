@@ -6,6 +6,7 @@ import Profile from "@/components/sections/profile";
 import { Main } from "@/components/layout";
 import TabNaviagtion from "@/components/tab-navigation";
 import { Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Nithish Sampath | CV",
@@ -39,6 +40,7 @@ export default function RootLayout({
             <main className="mt-12">{children}</main>
           </Main>
         </ThemeProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
