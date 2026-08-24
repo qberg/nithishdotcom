@@ -101,7 +101,7 @@ export const tabItems: TabItem[] = [
 
 export const about: About = {
   introduction:
-    "I am a Product Manager with 4 years of end-to-end PM experience across fintech, digital payment platforms, and SaaS products. My background blends technical execution, data-driven prioritization, and cross-functional leadership to turn complex operational workflows and market needs into high-impact digital experiences.",
+    "I am a Product Manager with 4+ years of end-to-end PM experience across fintech, digital payment platforms, and AI products. My background blends technical execution, data-driven prioritization, and cross-functional leadership to turn complex operational workflows and market needs into high-impact digital experiences.",
 
   experience:
     "Having scaled consumer payment systems processing millions of transactions and led product strategy for complex workflows, I specialize in:",
@@ -125,7 +125,7 @@ export const about: About = {
   ],
 
   education:
-    "I hold a Master's in Technology Management from the Gies College of Business (University of Illinois Urbana-Champaign), where I deepened my expertise in systems development, technology commercialization, and managing innovation.",
+    "I hold a Master's in Technology Management from the Gies College of Business (University of Illinois Urbana-Champaign), where I deepened my expertise in systems development, technology strategy, and managing innovation.",
 };
 
 export const contacts: Contact[] = [
@@ -170,7 +170,7 @@ export const workExperience: WorkExperience[] = [
   {
     role: "Product Manager 2",
     company: "ICICI Bank Limited",
-    companyWebsite: "https://www.icicibank.com/",
+    companyWebsite: "https://www.icici.bank.in/personal-banking/ways-to-bank/mobile-banking/imobile",
     duration: "July 2021 – July 2024",
     location: "Bangalore, India",
     highlights: [
