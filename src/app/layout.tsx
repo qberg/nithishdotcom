@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body
-        className={`${hankenGrotesk.variable} ${displaySerif.variable} antialiased`}
+        className={`${hankenGrotesk.variable} ${displaySerif.variable} bg-background text-foreground antialiased`}
       >
         <ConstellationBackground />
         <Main>
