@@ -52,9 +52,7 @@ interface Education {
 interface Project {
   title: string;
   summary: string;
-  role: string;
-  work: string;
-  impact: string[];
+  tags: string[];
 }
 
 interface SkillCategory {
@@ -213,37 +211,25 @@ export const education: Education[] = [
 export const projects: Project[] = [
   {
     title: "Digital Payments Revamp",
-    summary: "iMobile Pay is the ICICI's official banking app.",
-    role: "Product Manager, ICICI Bank",
-    work: "Led the end-to-end revamp of the digital payment section of the app, identified frictions across payment flows. Prioritized the roadmap and partnered with design, engineering, QA, and business teams on UX improvements, design consistency, testing, and launch execution.",
-    impact: [
-      "35% increase in user engagement",
-      "11% increase in MAUs",
-      "40% reduction in UI response time",
-    ],
+    summary:
+      "End-to-end revamp of UPI and digital payments on ICICI’s iMobile Pay — discovery, roadmap, UX, and launch on a high-scale banking app.",
+    tags: ["Fintech", "UPI", "Mobile Banking", "UX", "Product Execution"],
   },
   {
     title: "Kahana AI Browser",
     summary:
-      "Enterprise browser with an integrated AI assistant for knowledge work.",
-    role: "Product Owner / Program Manager",
-    work: "Defined customer and market requirements, prioritized features, and managed the product backlog across technical workstreams. Partnered with engineering through development, testing, and release, including AI guardrails and feedback loops to improve output quality.",
-    impact: [
-      "20% reduction in AI hallucination/error rates",
-      "Translated complex technical requirements into usable product features",
-    ],
+      "Enterprise browser with an integrated AI assistant — requirements, backlog, technical workstreams, and guardrails from build through release.",
+    tags: ["AI Product", "Enterprise", "Guardrails", "Technical PM"],
   },
   {
     title: "RLC Roadmap + Analytics",
     summary:
-      "Delivery operations and stakeholder reporting for a non-profit digital platform.",
-    role: "Technical Project / Program Manager",
-    work: "Joined an environment with a stalled engineering roadmap and restructured sprint execution and delivery operations. Managed bi-weekly sprints across 10+ features, built Salesforce dashboards for stakeholders, and led data cleanup to improve cross-functional coordination across distributed teams.",
-    impact: [
-      "~25% improvement in delivery predictability",
-      "8+ Salesforce dashboards built for stakeholder decision-making",
-      "~30% reduction in manual reporting",
-      "Salesforce data cleanup and de-duplication across 10K+ records",
+      "Restructured a stalled engineering roadmap and built Salesforce analytics so a non-profit team could deliver and decide with clearer data.",
+    tags: [
+      "Program Management",
+      "Salesforce",
+      "Analytics",
+      "Delivery Ops",
     ],
   },
 ];

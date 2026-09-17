@@ -4,34 +4,51 @@ import { skills, tools } from "@/data/bioData";
 import { motion } from "motion/react";
 
 const fadeInUpVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: delay * 0.1 },
+    transition: { duration: 0.45, delay: delay * 0.08 },
   }),
 };
 
 const fadeInLeftVariants = {
-  hidden: { opacity: 0, x: -10 },
+  hidden: { opacity: 0, x: -8 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.4 },
   },
 };
 
-function SectionHeader({ title }: { title: string }) {
+function SectionHeader({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
   return (
-    <motion.h2
-      className="font-semibold text-2xl"
-      variants={fadeInLeftVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      {title}
-    </motion.h2>
+    <div>
+      <motion.p
+        className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-lavender"
+        variants={fadeInLeftVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {eyebrow}
+      </motion.p>
+      <motion.h2
+        className="font-display text-3xl text-foreground sm:text-4xl"
+        variants={fadeInLeftVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {title}
+      </motion.h2>
+    </div>
   );
 }
 
@@ -46,15 +63,15 @@ function SkillEntry({
 }) {
   return (
     <motion.article
-      className="border-l border-border pl-4"
+      className="border-l border-border/70 pl-4"
       variants={fadeInUpVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       custom={delay}
     >
-      <h3 className="font-semibold">{title}</h3>
-      <p className="mt-1.5 text-muted-foreground leading-relaxed">{items}</p>
+      <h3 className="font-medium text-foreground">{title}</h3>
+      <p className="mt-2 leading-relaxed text-muted-foreground">{items}</p>
     </motion.article>
   );
 }
@@ -70,15 +87,15 @@ function ToolRow({
 }) {
   return (
     <motion.div
-      className="grid gap-1 border-b border-border/60 py-4 last:border-b-0 sm:grid-cols-[minmax(9.5rem,34%)_1fr] sm:items-start sm:gap-6"
+      className="grid gap-1 border-b border-border/50 py-5 last:border-b-0 sm:grid-cols-[minmax(9.5rem,34%)_1fr] sm:items-start sm:gap-6"
       variants={fadeInUpVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       custom={delay}
     >
-      <div className="font-semibold">{domain}</div>
-      <div className="text-muted-foreground leading-relaxed">{stack}</div>
+      <div className="font-medium text-foreground">{domain}</div>
+      <div className="leading-relaxed text-muted-foreground">{stack}</div>
     </motion.div>
   );
 }
@@ -86,7 +103,7 @@ function ToolRow({
 export default function Skills() {
   if (!skills?.length || !tools?.length) {
     return (
-      <section className="mt-12">
+      <section className="mt-8">
         <p>Skills information coming soon...</p>
       </section>
     );
@@ -97,23 +114,26 @@ export default function Skills() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
       },
     },
   };
 
   return (
-    <section className="text-lg" aria-label="Skills">
+    <section className="max-w-2xl text-base sm:text-lg" aria-label="Skills">
       <motion.div
-        className="space-y-6"
+        className="space-y-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.08 }}
       >
-        <SectionHeader title="Skills & Core Competencies" />
+        <SectionHeader
+          eyebrow="Capabilities"
+          title="Skills & Core Competencies"
+        />
 
-        <div className="space-y-5">
+        <div className="space-y-6">
           {skills.map((item, index) => (
             <SkillEntry
               key={item.title}
@@ -126,16 +146,16 @@ export default function Skills() {
       </motion.div>
 
       <motion.div
-        className="mt-12 space-y-6"
+        className="mt-16 space-y-8"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.08 }}
       >
-        <SectionHeader title="Tools & Technical Stack" />
+        <SectionHeader eyebrow="Stack" title="Tools & Technical Stack" />
 
         <div>
-          <div className="hidden border-b border-border pb-3 text-sm font-medium text-muted-foreground sm:grid sm:grid-cols-[minmax(9.5rem,34%)_1fr] sm:gap-6">
+          <div className="hidden border-b border-border/60 pb-3 text-sm font-medium text-muted-foreground sm:grid sm:grid-cols-[minmax(9.5rem,34%)_1fr] sm:gap-6">
             <span>Domain</span>
             <span>Stack & Platforms</span>
           </div>

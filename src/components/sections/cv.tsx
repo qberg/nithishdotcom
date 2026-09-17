@@ -6,34 +6,51 @@ import { education, workExperience } from "@/data/bioData";
 import InfoCard from "../ui/info-card";
 
 const fadeInUpVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 16 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: delay * 0.1 },
+    transition: { duration: 0.45, delay: delay * 0.08 },
   }),
 };
 
 const fadeInLeftVariants = {
-  hidden: { opacity: 0, x: -10 },
+  hidden: { opacity: 0, x: -8 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.5 },
+    transition: { duration: 0.4 },
   },
 };
 
-function SectionHeader({ title }: { title: string }) {
+function SectionHeader({
+  eyebrow,
+  title,
+}: {
+  eyebrow: string;
+  title: string;
+}) {
   return (
-    <motion.h2
-      className="font-semibold text-2xl"
-      variants={fadeInLeftVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-    >
-      {title}
-    </motion.h2>
+    <div className="mb-2">
+      <motion.p
+        className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-lavender"
+        variants={fadeInLeftVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {eyebrow}
+      </motion.p>
+      <motion.h2
+        className="font-display text-3xl text-foreground sm:text-4xl"
+        variants={fadeInLeftVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {title}
+      </motion.h2>
+    </div>
   );
 }
 
@@ -42,29 +59,29 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
+      staggerChildren: 0.08,
     },
   },
 };
 
 export default function CV() {
   return (
-    <section className="text-lg" aria-label="CV">
+    <section className="max-w-2xl text-base sm:text-lg" aria-label="CV">
       <motion.div
-        className="space-y-6"
+        className="space-y-2"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, amount: 0.08 }}
       >
-        <SectionHeader title="Experience" />
+        <SectionHeader eyebrow="Career" title="Experience" />
         {workExperience.map((item, index) => (
           <motion.div
-            key={index}
+            key={`${item.company}-${item.role}`}
             variants={fadeInUpVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             custom={index + 1}
           >
             <InfoCard
@@ -79,19 +96,18 @@ export default function CV() {
         ))}
       </motion.div>
 
-      <motion.div className="mt-12">
-        <SectionHeader title="Education" />
+      <motion.div className="mt-16 space-y-2">
+        <SectionHeader eyebrow="Background" title="Education" />
         {education.map((item, index) => (
           <motion.div
-            key={index}
+            key={item.degree}
             variants={fadeInUpVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
             custom={index + 1}
           >
             <InfoCard
-              key={index}
               duration={item.duration}
               location={item.location}
               where={item.college}
