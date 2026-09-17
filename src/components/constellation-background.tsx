@@ -10,9 +10,9 @@ type Star = {
   vy: number;
 };
 
-const STAR_COUNT = 70;
-const LINK_DISTANCE = 130;
-const MOUSE_INFLUENCE = 28;
+const STAR_COUNT = 95;
+const LINK_DISTANCE = 150;
+const MOUSE_INFLUENCE = 36;
 
 export default function ConstellationBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -37,50 +37,61 @@ export default function ConstellationBackground() {
     let targetMouseX = 0.5;
     let targetMouseY = 0.5;
 
+    const createStars = () => {
+      stars = Array.from({ length: STAR_COUNT }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        z: 0.35 + Math.random() * 0.65,
+        // Slow ambient drift
+        vx: (Math.random() - 0.5) * 0.035,
+        vy: (Math.random() - 0.5) * 0.035,
+      }));
+    };
+
     const resize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = width * dpr;
-      canvas.height = height * dpr;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       if (stars.length === 0) {
-        stars = Array.from({ length: STAR_COUNT }, () => ({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          z: 0.4 + Math.random() * 0.6,
-          vx: (Math.random() - 0.5) * 0.12,
-          vy: (Math.random() - 0.5) * 0.12,
-        }));
+        createStars();
+      } else {
+        for (const star of stars) {
+          star.x = Math.min(Math.max(star.x, 0), width);
+          star.y = Math.min(Math.max(star.y, 0), height);
+        }
       }
     };
 
     const onPointerMove = (event: PointerEvent) => {
+      if (!width || !height) return;
       targetMouseX = event.clientX / width;
       targetMouseY = event.clientY / height;
     };
 
-    const draw = () => {
-      mouseX += (targetMouseX - mouseX) * 0.04;
-      mouseY += (targetMouseY - mouseY) * 0.04;
+    const drawFrame = () => {
+      mouseX += (targetMouseX - mouseX) * 0.025;
+      mouseY += (targetMouseY - mouseY) * 0.025;
 
       const parallaxX = (mouseX - 0.5) * MOUSE_INFLUENCE;
       const parallaxY = (mouseY - 0.5) * MOUSE_INFLUENCE;
 
       ctx.clearRect(0, 0, width, height);
 
-      for (const star of stars) {
-        if (!reduceMotion) {
+      if (!reduceMotion) {
+        for (const star of stars) {
           star.x += star.vx * star.z;
           star.y += star.vy * star.z;
 
-          if (star.x < -20) star.x = width + 20;
-          if (star.x > width + 20) star.x = -20;
-          if (star.y < -20) star.y = height + 20;
-          if (star.y > height + 20) star.y = -20;
+          if (star.x < -30) star.x = width + 30;
+          if (star.x > width + 30) star.x = -30;
+          if (star.y < -30) star.y = height + 30;
+          if (star.y > height + 30) star.y = -30;
         }
       }
 
@@ -92,15 +103,13 @@ export default function ConstellationBackground() {
           const ay = a.y + parallaxY * a.z;
           const bx = b.x + parallaxX * b.z;
           const by = b.y + parallaxY * b.z;
-          const dx = ax - bx;
-          const dy = ay - by;
-          const dist = Math.hypot(dx, dy);
+          const dist = Math.hypot(ax - bx, ay - by);
 
           if (dist < LINK_DISTANCE) {
-            const alpha = (1 - dist / LINK_DISTANCE) * 0.22;
+            const alpha = (1 - dist / LINK_DISTANCE) * 0.45;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(180, 170, 220, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(186, 176, 230, ${alpha})`;
+            ctx.lineWidth = 1;
             ctx.moveTo(ax, ay);
             ctx.lineTo(bx, by);
             ctx.stroke();
@@ -111,20 +120,24 @@ export default function ConstellationBackground() {
       for (const star of stars) {
         const x = star.x + parallaxX * star.z;
         const y = star.y + parallaxY * star.z;
-        const radius = 1 + star.z * 1.4;
+        const radius = 1.2 + star.z * 1.8;
+
         ctx.beginPath();
-        ctx.fillStyle = `rgba(210, 205, 235, ${0.35 + star.z * 0.4})`;
+        ctx.fillStyle = `rgba(225, 220, 245, ${0.45 + star.z * 0.45})`;
         ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fill();
       }
+    };
 
+    const loop = () => {
+      drawFrame();
       if (!reduceMotion) {
-        animationId = window.requestAnimationFrame(draw);
+        animationId = window.requestAnimationFrame(loop);
       }
     };
 
     resize();
-    draw();
+    loop();
 
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onPointerMove, { passive: true });
@@ -137,10 +150,11 @@ export default function ConstellationBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
+    <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 opacity-70"
-    />
+      className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+    >
+      <canvas ref={canvasRef} className="h-full w-full" />
+    </div>
   );
 }

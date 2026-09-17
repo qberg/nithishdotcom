@@ -19,13 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" style={{ colorScheme: "dark" }}>
       <body
-        className={`${hankenGrotesk.variable} ${displaySerif.variable} bg-background text-foreground antialiased`}
+        className={`${hankenGrotesk.variable} ${displaySerif.variable} relative bg-background text-foreground antialiased`}
       >
         <ConstellationBackground />
-        <Main>
-          <SiteNav />
-          {children}
-        </Main>
+        <div className="relative z-10">
+          <Main>
+            <SiteNav />
+            {children}
+          </Main>
+        </div>
       </body>
     </html>
   );
