@@ -8,11 +8,15 @@ type Star = {
   z: number;
   vx: number;
   vy: number;
+  /** How often this star gently changes direction */
+  wander: number;
+  angle: number;
+  speed: number;
 };
 
-const STAR_COUNT = 95;
-const LINK_DISTANCE = 150;
-const MOUSE_INFLUENCE = 36;
+const STAR_COUNT = 70;
+const LINK_DISTANCE = 120;
+const MOUSE_INFLUENCE = 22;
 
 export default function ConstellationBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -38,14 +42,20 @@ export default function ConstellationBackground() {
     let targetMouseY = 0.5;
 
     const createStars = () => {
-      stars = Array.from({ length: STAR_COUNT }, () => ({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        z: 0.35 + Math.random() * 0.65,
-        // Slow ambient drift
-        vx: (Math.random() - 0.5) * 0.035,
-        vy: (Math.random() - 0.5) * 0.035,
-      }));
+      stars = Array.from({ length: STAR_COUNT }, () => {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 0.012 + Math.random() * 0.028;
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          z: 0.35 + Math.random() * 0.65,
+          angle,
+          speed,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          wander: 0.004 + Math.random() * 0.012,
+        };
+      });
     };
 
     const resize = () => {
@@ -75,8 +85,8 @@ export default function ConstellationBackground() {
     };
 
     const drawFrame = () => {
-      mouseX += (targetMouseX - mouseX) * 0.025;
-      mouseY += (targetMouseY - mouseY) * 0.025;
+      mouseX += (targetMouseX - mouseX) * 0.02;
+      mouseY += (targetMouseY - mouseY) * 0.02;
 
       const parallaxX = (mouseX - 0.5) * MOUSE_INFLUENCE;
       const parallaxY = (mouseY - 0.5) * MOUSE_INFLUENCE;
@@ -85,13 +95,21 @@ export default function ConstellationBackground() {
 
       if (!reduceMotion) {
         for (const star of stars) {
-          star.x += star.vx * star.z;
-          star.y += star.vy * star.z;
+          // Independent wandering: each star slowly steers on its own path
+          star.angle += (Math.random() - 0.5) * star.wander * 2;
+          star.speed += (Math.random() - 0.5) * 0.0008;
+          star.speed = Math.min(0.045, Math.max(0.008, star.speed));
+          star.vx = Math.cos(star.angle) * star.speed * star.z;
+          star.vy = Math.sin(star.angle) * star.speed * star.z;
 
-          if (star.x < -30) star.x = width + 30;
-          if (star.x > width + 30) star.x = -30;
-          if (star.y < -30) star.y = height + 30;
-          if (star.y > height + 30) star.y = -30;
+          star.x += star.vx;
+          star.y += star.vy;
+
+          // Soft wrap so roaming feels continuous
+          if (star.x < -40) star.x = width + 40;
+          if (star.x > width + 40) star.x = -40;
+          if (star.y < -40) star.y = height + 40;
+          if (star.y > height + 40) star.y = -40;
         }
       }
 
@@ -106,10 +124,11 @@ export default function ConstellationBackground() {
           const dist = Math.hypot(ax - bx, ay - by);
 
           if (dist < LINK_DISTANCE) {
-            const alpha = (1 - dist / LINK_DISTANCE) * 0.45;
+            // ~half previous line intensity
+            const alpha = (1 - dist / LINK_DISTANCE) * 0.22;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(186, 176, 230, ${alpha})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 0.75;
             ctx.moveTo(ax, ay);
             ctx.lineTo(bx, by);
             ctx.stroke();
@@ -120,10 +139,10 @@ export default function ConstellationBackground() {
       for (const star of stars) {
         const x = star.x + parallaxX * star.z;
         const y = star.y + parallaxY * star.z;
-        const radius = 1.2 + star.z * 1.8;
-
+        const radius = 1 + star.z * 1.35;
+        // ~half previous dot intensity
         ctx.beginPath();
-        ctx.fillStyle = `rgba(225, 220, 245, ${0.45 + star.z * 0.45})`;
+        ctx.fillStyle = `rgba(225, 220, 245, ${0.22 + star.z * 0.22})`;
         ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fill();
       }
